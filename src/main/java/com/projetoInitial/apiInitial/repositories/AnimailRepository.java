@@ -14,4 +14,7 @@ public interface AnimailRepository extends JpaRepository<Animal, Long> {
 
     @Query("DELETE FROM Animal a WHERE a.id = :id")
     void deleteById(@Param("id") Long id);
+
+    @Query("SELECT MAX(a.id) + 1 FROM Animal a")
+    Long findMaxId();
 }

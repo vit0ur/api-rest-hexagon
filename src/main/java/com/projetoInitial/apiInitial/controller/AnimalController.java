@@ -1,5 +1,6 @@
 package com.projetoInitial.apiInitial.controller;
 
+import com.projetoInitial.apiInitial.dto.AnimalDTO;
 import com.projetoInitial.apiInitial.models.Animal;
 import com.projetoInitial.apiInitial.services.AnimailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class AnimalController {
     }
 
     @PostMapping
-    public Animal add(@RequestBody Animal animal) {
-        return animailService.cadastrarAnimal(animal);
+    public Animal add(@RequestBody AnimalDTO animalDTO) {
+        return animailService.cadastrarAnimal(animalDTO);
     }
 
     @GetMapping("/idadeMaiorQue/{idade}")
@@ -50,7 +51,7 @@ public class AnimalController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Animal> putAnimal(@PathVariable Long id, @RequestBody Animal animalAtualizado) {
+    public ResponseEntity<Animal> putAnimal(@PathVariable Long id, @RequestBody AnimalDTO animalAtualizado) {
         return animailService.AtualizaAnimal(id, animalAtualizado);
     }
 }

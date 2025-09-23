@@ -1,10 +1,8 @@
 package com.projetoInitial.apiInitial.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 import lombok.Data;
-import jakarta.persistence.Id;
+
 
 @Entity
 @Data
@@ -18,18 +16,38 @@ public class Animal {
     private String nome;
     private String raca;
 
+    @ManyToOne
+    @JoinColumn(name = "tutor_id")
+    private Tutor tutor;
+
     public Animal() {
     }
 
     public Animal(Long id, String especie, int idade, String nome, String raca) {
+       this.id = id;
+       this.especie = especie;
+       this.idade = idade;
+       this.nome = nome;
+       this.raca = raca;
+    }
+
+    public Animal(Long id, String especie, int idade, String nome, String raca, Tutor tutor) {
         this.id = id;
         this.especie = especie;
         this.idade = idade;
         this.nome = nome;
         this.raca = raca;
+        this.tutor = tutor;
     }
 
-    // Getters e setters
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
+
     public Long getId() {
         return id;
     }
